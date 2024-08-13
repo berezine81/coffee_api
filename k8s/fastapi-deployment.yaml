@@ -1,0 +1,28 @@
+# fastapi-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coffee-app-deployment
+  namespace: coffee-app
+spec:
+  selector:
+    matchLabels:
+      app: coffee-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: coffee-app
+    spec:
+      containers:
+        - name: coffee-app
+          image: coffeeapialpine:latest  # Replace with your actual image
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: coffee-app-config
+                  key: DATABASE_URL
+          ports:
+            - containerPort: 8000
+          imagePullPolicy: Never

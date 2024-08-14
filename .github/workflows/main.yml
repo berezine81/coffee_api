@@ -29,7 +29,7 @@ jobs:
     needs: secret-scan
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -55,7 +55,7 @@ jobs:
     needs: build-and-push
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -77,7 +77,7 @@ jobs:
     needs: test
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
 #      - name: Set up Minikube
 #        uses: manusa/actions-setup-minikube@v2
@@ -111,8 +111,8 @@ jobs:
 
       - name: Verify deployment
         run: |
-          kubectl rollout status deployment/coffee-app-deployment
-          kubectl get pods
+          kubectl get pods -A
+          kubectl rollout status deployment/coffee-app-deployment --namespace coffee-app
 
       - name: Check service via curl
         run: |

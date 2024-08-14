@@ -79,21 +79,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Minikube
-        uses: manusa/actions-setup-minikube@v2
-        with:
-          minikube-version: 'v1.31.1'
-          driver: docker
+#      - name: Set up Minikube
+#        uses: manusa/actions-setup-minikube@v2
+#        with:
+#          minikube-version: 'v1.31.1'
+#          driver: docker
 
-      - name: Log in to Minikube Docker registry
-        run: |
-          minikube docker-env
-          eval $(minikube -p minikube docker-env)
+      - name: start minikube
+        id: minikube
+        uses: medyagh/setup-minikube@latest
 
-      - name: Pull Docker image from GitHub Packages
-        run: |
-          docker pull ghcr.io/${{ github.repository }}:${{ github.ref_name }}
-          docker tag ghcr.io/${{ github.repository }}:${{ github.ref_name }} my-app:latest
+#      - name: Log in to Minikube Docker registry
+#        run: |
+#          minikube docker-env
+#          eval $(minikube -p minikube docker-env)
+
+#      - name: Pull Docker image from GitHub Packages
+#        run: |
+#          docker pull ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+#          docker tag ghcr.io/${{ github.repository }}:${{ github.ref_name }} my-app:latest
 
       - name: Deploy to Minikube
         run: |

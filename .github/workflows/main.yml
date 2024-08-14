@@ -8,7 +8,7 @@ on:
       - 'env/staging'
 
 permissions:
-  actions: write
+  packages: write
 
 jobs:
   secret-scan:

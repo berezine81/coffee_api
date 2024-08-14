@@ -50,12 +50,18 @@ resource "github_branch_protection" "stage" {
 
 resource "github_actions_secret" "db_password" {
   repository       = github_repository.repo.name
-  secret_name      = "db_password"
+  secret_name      = "POSTGRES_PASSWORD"
   plaintext_value  = var.db_password
 }
 
 resource "github_actions_variable" "db_user" {
   repository       = github_repository.repo.name
-  variable_name    = "db_user"
+  variable_name    = "POSTGRES_USER"
   value  = var.db_user
+}
+
+resource "github_actions_variable" "db_name" {
+  repository       = github_repository.repo.name
+  variable_name    = "POSTGRES_DB"
+  value  = var.db_name
 }

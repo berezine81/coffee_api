@@ -100,9 +100,14 @@ jobs:
 #          docker tag ghcr.io/${{ github.repository }}:${{ github.ref_name }} my-app:latest
 
       - name: Deploy to Minikube
+        env:
+          POSTGRES_USER: ${{ vars.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ vars.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ vars.POSTGRES_DB }}
+
         run: |
           kubectl apply -f k8s/namespace.yaml
-          kubectl create configmap --from-env-file .env
+          kubectl apply -f k8s/configmap.yaml
           kubectl apply -f k8s/pv-pvc.yaml
           kubectl apply -f k8s/postgres-deployment.yaml
           kubectl apply -f k8s/postgres-service.yaml

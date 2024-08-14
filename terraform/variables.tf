@@ -21,6 +21,12 @@ variable "db_user" {
   default = "dbuser"
 }
 
+variable "db_name" {
+  description = "The database user"
+  type = string
+  default = "coffeeapi"
+}
+
 variable "token" {
   description = "The repo token"
   type = string

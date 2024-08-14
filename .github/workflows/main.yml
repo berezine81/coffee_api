@@ -111,11 +111,11 @@ jobs:
 
       - name: Verify deployment
         run: |
-          kubectl rollout status deployment/my-app
+          kubectl rollout status deployment/coffee-app-deployment
           kubectl get pods
 
       - name: Check service via curl
         run: |
-          minikube service my-app-service --url
-          URL=$(minikube service my-app-service --url)
+          minikube service coffee-app-service --url
+          URL=$(minikube service coffee-app-service --url)
           curl $URL

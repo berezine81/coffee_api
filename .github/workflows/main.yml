@@ -45,7 +45,7 @@ jobs:
           push: true
           tags:
 #            ghcr.io/${{ github.repository }}:${{ github.sha }}
-            ghcr.io/${{ github.repository }}
+            ghcr.io/${{ github.repository }}:${{ github.run_number }}
 
   test:
     name: Run Unit and Integration Tests

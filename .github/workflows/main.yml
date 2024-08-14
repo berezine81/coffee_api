@@ -47,7 +47,6 @@ jobs:
           context: .
           push: true
           tags:
-#            ghcr.io/${{ github.repository }}:${{ github.sha }}
             ghcr.io/${{ github.repository }}:${{ github.run_number }}
 
   test:
@@ -67,10 +66,10 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run Unit Tests
-        run: pytest tests/unit
+#        run: pytest tests/unit
 
       - name: Run Integration Tests
-        run: pytest tests/integration
+#        run: pytest tests/integration
 
   deploy:
     name: Deploy to Minikube

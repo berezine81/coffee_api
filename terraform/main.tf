@@ -65,3 +65,9 @@ resource "github_actions_variable" "db_name" {
   variable_name    = "POSTGRES_DB"
   value  = var.db_name
 }
+
+resource "github_actions_variable" "db_host" {
+  repository       = github_repository.repo.name
+  variable_name    = "DB_HOST"
+  value  = var.db_host
+}

@@ -27,6 +27,12 @@ variable "db_name" {
   default = "coffeeapi"
 }
 
+variable "db_host" {
+  description = "The database user"
+  type = string
+  default = "coffee-db-deployment"
+}
+
 variable "token" {
   description = "The repo token"
   type = string

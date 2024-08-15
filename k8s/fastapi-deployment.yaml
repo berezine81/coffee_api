@@ -18,11 +18,11 @@ spec:
         - name: coffee-app
           image: APP_IMAGE  # Replace with your actual image
           env:
-            - name: DATABASE_URL
+            - name: DB_HOST
               valueFrom:
                 configMapKeyRef:
                   name: coffee-app-config
-                  key: DATABASE_URL
+                  key: DB_HOST
           ports:
             - containerPort: 8000
           imagePullPolicy: Never

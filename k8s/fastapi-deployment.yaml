@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: coffee-app
-          image: APP_IMAGE  # Replace with your actual image
+          image: $APP_IMAGE  # Replace with your actual image
           env:
             - name: DB_HOST
               valueFrom:

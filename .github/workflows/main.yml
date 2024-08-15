@@ -123,6 +123,6 @@ jobs:
 
       - name: Check service via curl
         run: |
-          minikube service coffee-app-service --url
-          URL=$(minikube service coffee-app-service --url)
+          minikube service coffee-app-service --url -n coffee-app
+          URL=$(minikube service coffee-app-service --url -n coffee-app)
           curl $URL

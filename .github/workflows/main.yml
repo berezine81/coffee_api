@@ -113,7 +113,7 @@ jobs:
           kubectl apply -f k8s/pv-pvc.yaml
           kubectl apply -f k8s/postgres-deployment.yaml
           kubectl apply -f k8s/postgres-service.yaml
-          kubectl run coffee-app --image=$APP_IMAGE --port=8000 -n coffee-app
+          kubectl run coffee-app --image=$APP_IMAGE --port=8000 -n coffee-app -l app=coffee-app
           kubectl apply -f k8s/fastapi-service.yaml
 
       - name: Verify deployment

@@ -119,7 +119,7 @@ jobs:
       - name: Verify deployment
         run: |
           kubectl get pods -A
-          kubectl wait --for=condition=Ready pod/coffee-app
+          kubectl wait --for=condition=Ready pod/coffee-app -n coffee-app
 
       - name: Check service via curl
         run: |

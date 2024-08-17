@@ -1,6 +1,7 @@
 #
 FROM python:alpine3.19
 
+EXPOSE 8000/tcp
 #
 WORKDIR /code
 

@@ -30,7 +30,7 @@ variable "db_name" {
 variable "db_host" {
   description = "The database user"
   type = string
-  default = "coffee-db-deployment"
+  default = "coffee-db-service"
 }
 
 variable "token" {

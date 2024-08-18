@@ -113,12 +113,12 @@ jobs:
           kubectl apply -f k8s/pv-pvc.yaml
           kubectl apply -f k8s/postgres-deployment.yaml
           kubectl apply -f k8s/postgres-service.yaml
-          kubectl run coffee-app --image=$APP_IMAGE --port=8000 -n coffee-app -l app=coffee-app
+          kubectl run coffee-app --image=$APP_IMAGE --port=8000 -n coffee-app -l app=coffee-app --env=POSTGRES_USER=$POSTGRES_USER --env=POSTGRES_PASSWORD=$POSTGRES_PASSWORD --env=POSTGRES_DB=$POSTGRES_DB --env=DB_HOST=$DB_HOST
           kubectl apply -f k8s/fastapi-service.yaml
 
       - name: Verify deployment
         run: |
-          kubectl get pods -A
+          kubectl get pods -n coffee-app
           kubectl wait --for=condition=Ready pod/coffee-app -n coffee-app
 
       - name: Check service via curl

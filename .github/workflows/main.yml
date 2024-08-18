@@ -109,7 +109,7 @@ jobs:
 
         run: |
           kubectl apply -f k8s/namespace.yaml
-          kubectl apply -f k8s/configmap.yaml
+          kubectl create configmap -n coffee-app coffee-app-config  --from-literal=POSTGRES_USER=$POSTGRES_USER --from-literal=POSTGRES_PASSWORD=$POSTGRES_PASSWORD --from-literal=POSTGRES_DB=$POSTGRES_DB --from-literal=DB_HOST=$DB_HOST
           kubectl apply -f k8s/pv-pvc.yaml
           kubectl apply -f k8s/postgres-deployment.yaml
           kubectl apply -f k8s/postgres-service.yaml

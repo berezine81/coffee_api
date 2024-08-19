@@ -65,23 +65,27 @@ Before deploying the Coffee API Service, ensure that you have the following inst
 
 ### **Dockerizing the API**
 
-1. **Build the Docker Image**:
    ```bash
    docker build -t <your docker repo/your container tag> .
    docker push <your docker repo/your container tag>
    ```
-2. **Deploying to minikube**:
+
+### **Deploying to minikube**:
    ```bash
    kubectl create ns coffee-app #create namespace
    kubectl create configmap -n coffee-app coffee-app-config --from-env-file=.env  #create configmap from .env file
    kubectl create secret generic -n coffee-app coffee-app-secret --from-literal=POSTGRES_PASSWORD=<password> #create secret with database password
-   kubectl apply -f k8s/postgres-deployment.yaml
+   kubectl apply -f k8s/postgres-deployment.yaml #db deployment
    ```
    Specify your image name in the *k8s/kustomization.yaml* in the *newName* field and run
    ```bash
-   kubectl -k k8s/
+   kubectl -k k8s/ #API deployment
    ```
-   It will deploy coffee API app.
+### **Access the Service**:
+   ```bash
+   minikube service coffee-api-service --url -n coffee-app
+   ```
+   This command will provide the URL to access the Coffee API service.
 
 ## **5. Usage Instructions**
 
@@ -89,6 +93,19 @@ Before deploying the Coffee API Service, ensure that you have the following inst
 
    - Get Coffee Type Based on Payment:
    ```bash
-   curl -X POST "http://<minikube-url>/buy_coffee" -H "Content-Type: application/json" -d '{"payment": 2.5}'
+   curl -X POST "http://<minikube-url>/buy_coffee" -H "Content-Type: application/json" -d '{"amount": 2.5}'
    ```
    - Response: {"transaction_id": <transaction_id>,"coffee_type":"Latte","payment_amount":2.5}
+
+## **6. GitHub Actions CI/CD Pipeline**
+
+   Project includes workflow file .github/workflows/main.yml with the following stages:
+
+    Secret Scan: Uses [**gitleaks**](https://github.com/gitleaks/gitleaks) to scan for secrets.
+    Build and Push Docker Image: Builds Docker images and pushes them to GitHub Packages.
+    Run Tests: Executes unit and integration tests (if you add this tests).
+    Deploy to Minikube: Deploys the application to Minikube and verifies it with curl.
+
+   Push to GitHub:
+
+    Push your code to the env/staging or main branches to trigger the CI/CD pipeline.

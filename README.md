@@ -5,15 +5,10 @@
 1. [Overview](#overview)
 2. [Prerequisites](#prerequisites)
 3. [Infrastructure as Code (IaC) Setup](#infrastructure-as-code-iac-setup)
-    - [Terraform Setup](#terraform-setup)
-    - [Kubernetes Manifests](#kubernetes-manifests)
-4. [Deployment Instructions](#deployment-instructions)
+4. [Deployment Application](#deployment-application)
     - [Dockerizing the API](#dockerizing-the-api)
-    - [Setting Up GitHub Actions CI/CD Pipeline](#setting-up-github-actions-cicd-pipeline)
     - [Deploying to Minikube](#deploying-to-minikube)
 5. [Usage Instructions](#usage-instructions)
-6. [Architectural Decisions and Trade-offs](#architectural-decisions-and-trade-offs)
-7. [Conclusion](#conclusion)
 
 ---
 
@@ -75,13 +70,25 @@ Before deploying the Coffee API Service, ensure that you have the following inst
    docker build -t <your docker repo/your container tag> .
    docker push <your docker repo/your container tag>
    ```
-2. **Deploying to Kubernetes cluster**:
+2. **Deploying to minikube**:
    ```bash
    kubectl create ns coffee-app #create namespace
    kubectl create configmap -n coffee-app coffee-app-config --from-env-file=.env  #create configmap from .env file
    kubectl create secret generic -n coffee-app coffee-app-secret --from-literal=POSTGRES_PASSWORD=<password> #create secret with database password
    kubectl apply -f k8s/postgres-deployment.yaml
    ```
-   Specify your image name in the *k8s/kustomization.yaml* in the *newName* field and running
+   Specify your image name in the *k8s/kustomization.yaml* in the *newName* field and run
    ```bash
    kubectl -k k8s/
+   ```
+   It will deploy coffee API app.
+
+## **5. Usage Instructions**
+
+   Once the service is deployed, you can interact with the Coffee API by sending HTTP requests. For example:
+
+   - Get Coffee Type Based on Payment:
+   ```bash
+   curl -X POST "http://<minikube-url>/buy_coffee" -H "Content-Type: application/json" -d '{"payment": 2.5}'
+   ```
+   - Response: {"transaction_id": <transaction_id>,"coffee_type":"Latte","payment_amount":2.5}

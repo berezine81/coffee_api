@@ -36,11 +36,11 @@ The service is containerized using Docker and deployed on a Kubernetes cluster v
 Before deploying the Coffee API Service, ensure that you have the following installed and configured:
 
 - [**Git**](https://git-scm.com/download/linux): Version control system.
-- **Docker**: Containerization platform.
-- **Terraform**: Infrastructure as Code tool.
-- **Minikube**: Local Kubernetes cluster.
-- **kubectl**: Kubernetes command-line tool.
-- **GitHub account**: Required for creating repositories and running CI/CD pipelines.
+- [**Docker**](https://docs.docker.com/engine/install/): Containerization platform.
+- [**Terraform**](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli): Infrastructure as Code tool.
+- [**Minikube**](https://minikube.sigs.k8s.io/docs/start/?arch=%2Flinux%2Fx86-64%2Fstable%2Fbinary+download): Local Kubernetes cluster or you can use your Kubernetes cluster.
+- [**kubectl**](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/): Kubernetes command-line tool.
+- [**GitHub account**](https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github): Required for creating repositories and running CI/CD pipelines. You can use your existing account.
 
 ---
 
@@ -52,3 +52,13 @@ Before deploying the Coffee API Service, ensure that you have the following inst
    ```bash
    git clone <infra-repo-url>
    cd infra
+
+2. **Terraform Configuration**:
+
+- **main.tf**: Automates the creation of a GitHub repository, sets up branch protection, and configures secrets and environment variables.
+- **variables.tf**: Contains variables that you can change. Do not specify the database password and GitHub token to prevent leakage.
+
+3. **Creating GitHub working repository in your account**:
+  ```bash
+  terraform init
+  terraform apply

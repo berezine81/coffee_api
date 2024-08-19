@@ -100,12 +100,9 @@ Before deploying the Coffee API Service, ensure that you have the following inst
 ## **6. GitHub Actions CI/CD Pipeline**
 
    Project includes workflow file .github/workflows/main.yml with the following stages:
+   - Secret Scan: Uses [**gitleaks**](https://github.com/gitleaks/gitleaks) to scan for secrets.
+   - Build and Push Docker Image: Builds Docker images and pushes them to GitHub Packages.
+   - Run Tests: Executes unit and integration tests (if you add this tests).
+   - Deploy to Minikube: Deploys the application to Minikube and verifies it with curl.
 
-    Secret Scan: Uses [**gitleaks**](https://github.com/gitleaks/gitleaks) to scan for secrets.
-    Build and Push Docker Image: Builds Docker images and pushes them to GitHub Packages.
-    Run Tests: Executes unit and integration tests (if you add this tests).
-    Deploy to Minikube: Deploys the application to Minikube and verifies it with curl.
-
-   Push to GitHub:
-
-    Push your code to the env/staging or main branches to trigger the CI/CD pipeline.
+   Push your code to the env/staging or main branches to trigger the CI/CD pipeline.

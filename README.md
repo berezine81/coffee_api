@@ -35,7 +35,7 @@ The service is containerized using Docker and deployed on a Kubernetes cluster v
 
 Before deploying the Coffee API Service, ensure that you have the following installed and configured:
 
-- **Git**: Version control system.
+- **Git**: Version control system. [Git install](https://git-scm.com/download/linux)
 - **Docker**: Containerization platform.
 - **Terraform**: Infrastructure as Code tool.
 - **Minikube**: Local Kubernetes cluster.

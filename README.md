@@ -2,13 +2,13 @@
 
 ## **Table of Contents**
 
-1. [Overview](#1.-overview)
-2. [Prerequisites](#prerequisites)
-3. [Infrastructure as Code (IaC) Setup](#infrastructure-as-code-iac-setup)
-4. [Deployment Application](#deployment-application)
+1. [Overview](#1-overview)
+2. [Prerequisites](#2-prerequisites)
+3. [Infrastructure as Code (IaC) Setup](#3-infrastructure-as-code-iac-setup)
+4. [Deployment Application](#4-deployment-application)
     - [Dockerizing the API](#dockerizing-the-api)
     - [Deploying to Minikube](#deploying-to-minikube)
-5. [Usage Instructions](#usage-instructions)
+5. [Usage Instructions](#5-usage-instructions)
 
 ---
 

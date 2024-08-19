@@ -28,7 +28,7 @@ variable "db_name" {
 }
 
 variable "db_host" {
-  description = "The database user"
+  description = "The database host"
   type = string
   default = "coffee-db-service"
 }

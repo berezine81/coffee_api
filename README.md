@@ -2,7 +2,7 @@
 
 ## **Table of Contents**
 
-1. [Overview](#overview)
+1. [Overview](#1.-overview)
 2. [Prerequisites](#prerequisites)
 3. [Infrastructure as Code (IaC) Setup](#infrastructure-as-code-iac-setup)
 4. [Deployment Application](#deployment-application)
@@ -39,7 +39,7 @@ Before deploying the Coffee API Service, ensure that you have the following inst
 
 ---
 
-## **3. [Infrastructure as Code (IaC) Setup]**
+## **3. Infrastructure as Code (IaC) Setup**
 
 ### **Terraform Setup**
 
@@ -61,7 +61,7 @@ Before deploying the Coffee API Service, ensure that you have the following inst
    This setup creates the necessary GitHub repository with protected branches and secrets. You will be prompted to enter the database password and GitHub token.
 
 ---
-## [**4. Deployment Application**]
+## **4. Deployment Application**
 
 ### **Dockerizing the API**
 

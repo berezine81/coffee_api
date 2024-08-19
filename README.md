@@ -62,7 +62,7 @@ Before deploying the Coffee API Service, ensure that you have the following inst
    ```bash
    terraform init
    terraform apply
-
+   ```
    This setup creates the necessary GitHub repository with protected branches and secrets. You will be prompted to enter the database password and GitHub token.
 
 ---
@@ -74,14 +74,14 @@ Before deploying the Coffee API Service, ensure that you have the following inst
    ```bash
    docker build -t <your docker repo/your container tag> .
    docker push <your docker repo/your container tag>
-
+   ```
 2. **Deploying to Kubernetes cluster**:
    ```bash
    kubectl create ns coffee-app #create namespace
    kubectl create configmap -n coffee-app coffee-app-config --from-env-file=.env  #create configmap from .env file
    kubectl create secret generic -n coffee-app coffee-app-secret --from-literal=POSTGRES_PASSWORD=<password> #create secret with database password
    kubectl apply -f k8s/postgres-deployment.yaml
-
+   ```
    Specify your image name in the k8s/kustomization.yaml in the newName field and running
    ```bash
    kubectl -k k8s/

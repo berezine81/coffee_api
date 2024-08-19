@@ -56,7 +56,7 @@ Before deploying the Coffee API Service, ensure that you have the following inst
 2. **Terraform Configuration**:
 
 - **main.tf**: Automates the creation of a GitHub repository, sets up branch protection, and configures secrets and environment variables.
-- **variables.tf**: Contains variables db_user, db_name, db_host that you can change. Do not specify the database password and GitHub token to prevent leakage.
+- **variables.tf**: Contains variables *db_user*, *db_name*, *db_host* that you can change. Do not specify the database password and GitHub token to prevent leakage.
 
 3. **Creating GitHub working repository in your account**:
    ```bash
@@ -82,10 +82,6 @@ Before deploying the Coffee API Service, ensure that you have the following inst
    kubectl create secret generic -n coffee-app coffee-app-secret --from-literal=POSTGRES_PASSWORD=<password> #create secret with database password
    kubectl apply -f k8s/postgres-deployment.yaml
    ```
-   Specify your image name in the k8s/kustomization.yaml in the newName field and running
+   Specify your image name in the *k8s/kustomization.yaml* in the *newName* field and running
    ```bash
    kubectl -k k8s/
-
-
-
-

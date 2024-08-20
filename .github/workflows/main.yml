@@ -110,6 +110,7 @@ jobs:
         run: |
           kubectl create ns coffee-app
           kubectl create configmap -n coffee-app coffee-app-config --from-env-file=.env
+          kubectl describe -n coffee-app configmap coffee-app-config
           kubectl create secret generic -n coffee-app coffee-app-secret --from-literal=POSTGRES_PASSWORD=$POSTGRES_PASSWORD
           kubectl apply -f k8s/postgres-deployment.yaml
           sed -i "s|newName:.*|newName: ${APP_IMAGE}|" k8s/kustomization.yaml

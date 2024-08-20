@@ -113,8 +113,7 @@ jobs:
           kubectl describe -n coffee-app configmap coffee-app-config
           kubectl create secret generic -n coffee-app coffee-app-secret --from-literal=POSTGRES_PASSWORD=$POSTGRES_PASSWORD
           kubectl apply -f k8s/postgres-deployment.yaml
-          sed -i "s|newName:.*|newName: ${APP_IMAGE}|" k8s/kustomization.yaml
-          kubectl apply -k k8s/
+          sed "s|APP_IMAGE|${APP_IMAGE}|" k8s/fastapi-deployment.yaml | kubectl apply -f -
 
       - name: Verify deployment
         run: |

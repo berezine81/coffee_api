@@ -118,6 +118,7 @@ jobs:
       - name: Verify deployment
         run: |
           kubectl get pods -n coffee-app
+          kubectl logs -n coffee-app deployment/coffee-app-deployment
           kubectl rollout status deployment/coffee-app-deployment -n coffee-app --timeout 60s
 
       - name: Check service via curl

@@ -115,11 +115,6 @@ jobs:
           sed -i "s|newName:.*|newName: ${APP_IMAGE}|" k8s/kustomization.yaml
           kubectl apply -k k8s/
 
-      - name: Verify deployment
-        run: |
-          kubectl get pods -n coffee-app
-          kubectl wait --for=condition=Ready pod/coffee-app -n coffee-app
-
       - name: Check service via curl
         run: |
           minikube service coffee-app-service --url -n coffee-app

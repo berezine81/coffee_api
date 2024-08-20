@@ -40,7 +40,7 @@ spec:
                   key: POSTGRES_PASSWORD
           ports:
             - containerPort: 8000
-          imagePullPolicy: Never
+          imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service

@@ -79,32 +79,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-#      - name: Set up Minikube
-#        uses: manusa/actions-setup-minikube@v2
-#        with:
-#          minikube-version: 'v1.31.1'
-#          driver: docker
-
-#      - name: start minikube
-#        id: minikube
-#        uses: medyagh/setup-minikube@latest
-
-      - name: Set up Minikube
-        run: |
-          sudo apt-get install -y conntrack
-          curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-          sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
-          minikube start --driver=none --wait all
-
-#      - name: Log in to Minikube Docker registry
-#        run: |
-#          minikube docker-env
-#          eval $(minikube -p minikube docker-env)
-
-#      - name: Pull Docker image from GitHub Packages
-#        run: |
-#          docker pull ghcr.io/${{ github.repository }}:${{ github.ref_name }}
-#          docker tag ghcr.io/${{ github.repository }}:${{ github.ref_name }} my-app:latest
+      - name: start minikube
+        id: minikube
+        uses: medyagh/setup-minikube@latest
 
       - name: Deploy to Minikube
         env:
@@ -117,7 +94,7 @@ jobs:
         run: |
           kubectl create ns coffee-app
           kubectl create configmap -n coffee-app coffee-app-config --from-env-file=.env
-          kubectl create secret generic -n coffee-app coffee-app-secret --from-literal=POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+          kubectl create secret generic -n coffee-app coffee-app-secret --from-literal=POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
           kubectl apply -f k8s/postgres-deployment.yaml
           kubectl describe -n coffee-app service coffee-db-service
           sed "s|APP_IMAGE|${APP_IMAGE}|" k8s/fastapi-deployment.yaml | kubectl apply -f -
